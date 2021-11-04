@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar.js';
+import HomePage from './components/HomePage.js';
+import "bootswatch/dist/litera/bootstrap.min.css";
+import authApi from './services/authApi';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {isAuthenticated,logout} from './actions/loginAction';
 
-function App() {
+
+authApi.setup();
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" >
+      <Navbar isAuthenticated = {props.isAuthenticated}/>
+      <HomePage/>
+     
     </div>
   );
 }
 
-export default App;
+const mapStateToProps =(state) => {
+    return {
+        isAuthenticated:state.isAuthenticated
+    }
+}
+
+
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ 
+        isAuthenticated,
+        logout
+        },dispatch);
+}
+export default connect (mapStateToProps,mapDispatchToProps) (App);
