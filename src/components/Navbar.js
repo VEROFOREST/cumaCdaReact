@@ -1,14 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import {logout,isAuthenticated} from '../actions/loginAction';
+import {Link, NavLink} from 'react-router-dom';
 
 
 const Navbar = (props) => {
-    return ( 
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        const auth= props.auth.isAuthenticated;
+       const test = props.firstName;
+       console.log(auth);
+        // console.log(firstName);
+
+       return ( 
+        <nav className="navbar navbar-expand-lg navbar-light bg-info" >
   <div className="container-fluid">
+     
     <a className="navbar-brand" href="HomePage">Cuma de St Laurent</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -17,7 +23,7 @@ const Navbar = (props) => {
     <div className="collapse navbar-collapse" id="navbarColor02">
       <ul className="navbar-nav me-auto">
         <li className="nav-item">
-          <NavLink className="nav-link active" to="/">Accueil
+          <NavLink className="nav-link active" exact to="/">Accueil
             <span className="visually-hidden">(current)</span>
           </NavLink>
         </li>
@@ -30,19 +36,21 @@ const Navbar = (props) => {
         <li className="nav-item">
           <NavLink className="nav-link" to="/Reservations/">Réservations</NavLink>
         </li>
-        
+   
       </ul>
-      <form className="d-flex">
-        <input className="form-control me-sm-2" type="text" placeholder="Search"/>
-        <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        
-            <NavLink to="/login" className="btn btn-secondary my-2 my-sm-0" >connexion</NavLink>
-        
-        
-        <button onClick={()=>props.logout()}className="btn btn-danger my-2 my-sm-0" type="submit">deconnexion</button>
-        
+      <ul className="navbar-nav ml-auto">
+      
+      {auth === true ?
 
-      </form>
+            <>
+            <NavLink exact to="/login" className="btn btn-secondary my-2 my-sm-0" ><i className="fa fa-user" aria-hidden="true"></i> {props.firstName.firstName}  {props.lastName.lastName}</NavLink>
+          
+            <button onClick={props.logout} className="btn btn-danger my-2 my-sm-0" type="submit"><i className="fa fa-sign-out" aria-hidden="true"></i></button></>
+        :
+        <NavLink exact to="/login" className="btn btn-secondary my-2 my-sm-0" ><i className="fa fa-sign-in" aria-hidden="true"></i> Connexion</NavLink>         
+      }
+      </ul>
+     
     </div>
   </div>
 </nav>

@@ -1,12 +1,10 @@
 
 import axios from "axios";
 
-
 export const updateUsername = (value) => {
     return {
         type: 'USERNAME',
         email: value
-    
     }
 }
 export const updatePassword = (value) => {
@@ -16,29 +14,41 @@ export const updatePassword = (value) => {
     }
 }
 
-export const isAuthenticated = (value) =>{
-    
+export const updateFirstName = (value)=> {
     return {
-        type: 'ISAUTHENDICATED',
-        isAuthenticated: value
-    
+        type: "FIRSTNAME",
+        firstName: value
     }
 
 }
- 
-export const login = (event,email,password) =>{
-    // console.log(email,password);
-    event.preventDefault()
-    return async dispatch =>
+export const updateLastName = (value)=> {
+    return {
+        type: "LASTNAME",
+        lastName: value
+    }
+
+}
+
+export const isAuthenticated = (status) =>{
+    
+    return {
+        type: 'ISAUTHENTICATED',
+        isAuthenticated: status
+    }    
+}
+export const login = (email,password) =>{
+    // console.log(email,password);  
+    return async (dispatch)=>
     {
         try{
-             const token = await axios
-             .post("http://127.0.0.1:8000/api/login_check",{email:email,password:password})
-             .then(response=>response.data.token)
-
-             window.localStorage.setItem("authToken",token);
-             axios.defaults.headers["Authorization"] = "Bearer " + token;
-             isAuthenticated(true);
+            const token = await axios
+            .post("http://127.0.0.1:8000/api/login_check",{email:email,password:password})
+            .then(response=>response.data.token)
+            // stockage du token dans le storage du pc
+            window.localStorage.setItem("authToken",token);
+            axios.defaults.headers["Authorization"] = "Bearer " + token;
+             window.location.href = '/DashboardPage'
+            dispatch({type: 'LOGIN', payload: token })
         }
         catch (error){
             alert(error);
@@ -49,8 +59,7 @@ export const login = (event,email,password) =>{
 export const logout = () => {
     return ( 
         window.localStorage.removeItem("authToken"),
-        isAuthenticated(false),
-        delete axios.defaults.headers["Authorization"]   
-     );
-}
-
+        delete axios.defaults.headers["Authorization"],
+        window.location.href = '/Login'
+        );
+    }

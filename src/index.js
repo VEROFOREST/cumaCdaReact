@@ -5,7 +5,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { reducer as form } from 'redux-form';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import {
   ConnectedRouter,
@@ -20,35 +20,20 @@ import user from './reducers/user/';
 import userRoutes from './routes/user';
 import LoginPage from './components/LoginPage';
 import loginReducer from './reducers/loginReducer';
+import Navbar from './components/Navbar';
+import { store } from './store';
+
+
 
 // import Navbar from './components/Navbar';
 // import Welcome from './Welcome';
 
 const history = createBrowserHistory();
-const store = createStore(
-  combineReducers({
-    router: connectRouter(history),
-    form,
-    loginReducer,
-    user,
-  }),
-  applyMiddleware(routerMiddleware(history), thunk)
-);
-
 ReactDOM.render(
   <Provider store={store}>
-        {/* <App /> */}
-    <ConnectedRouter history={history}>
-      <Switch>
-        {userRoutes}
-        <Route path="/login" component={LoginPage}/>
-        <Route path="/" component={App}/>
-       
-
-        {/* Add your routes here */}
-        {/* <Route render={() => <h1>Not Found</h1>} /> */}
-      </Switch>
-    </ConnectedRouter>
+      <ConnectedRouter history={history}>
+        <App/> 
+        </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

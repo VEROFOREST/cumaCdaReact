@@ -65,13 +65,13 @@ class Form extends Component {
         />
         <Field
           component={this.renderField}
-          name="firstName"
+          name="Nom"
           type="text"
           placeholder=""
         />
         <Field
           component={this.renderField}
-          name="lastName"
+          name="Prénom"
           type="text"
           placeholder=""
         />

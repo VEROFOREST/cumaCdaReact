@@ -1,8 +1,12 @@
+import isLogin from '../services/authApi';
+
 const INITIAL_STATE = {
 
     username : "",
     password : "",
-    isAuthenticated: false,
+    lastName:"",
+    firstName:"",
+    isAuthenticated: null,
     
   };
 
@@ -18,21 +22,31 @@ function loginReducer (state = INITIAL_STATE, action) {
                 ...state,
                 password:action.password,
             }
+        case 'FIRSTNAME':
+            return {
+                ...state,
+                firstName:action.firstName,
+            }
+        case 'LASTNAME':
+            return {
+                ...state,
+                lastName:action.lastName,
+            }
             case 'ISAUTHENTICATED':
-                return {
+            return {
                     ...state,
-                    isAuthenticated: action.isAuthenticated
+                    isAuthenticated: action.isAuthenticated,
                 } 
             case 'LOGIN':
                 return {
                     ...state,
                     payload:action.payload
                 }   
-                // case 'LOGOUT':
-        // return {
-        //         ...state,
-        //         payload:action.payload
-        //     }   
+                case 'LOGOUT':
+        return {
+                ...state,
+            
+            }   
                 
         default:
             return state

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { list, reset } from "../../actions/user/list";
 
+
 class List extends Component {
   static propTypes = {
     retrieved: PropTypes.object,
@@ -36,8 +37,8 @@ class List extends Component {
 
   render() {
     return (
-      <div>
-        <h1>User List</h1>
+      <div className="container ml-5 mr-10">
+        <h1>Liste des Adhérents</h1>
 
         {this.props.loading && (
           <div className="alert alert-info">Loading...</div>
@@ -51,35 +52,32 @@ class List extends Component {
           <div className="alert alert-danger">{this.props.error}</div>
         )}
 
-        <p>
-          <Link to="create" className="btn btn-primary">
-            Create
-          </Link>
-        </p>
+        
 
         <table className="table table-responsive table-striped table-hover">
           <thead>
             <tr>
               <th>id</th>
               <th>email</th>
-              <th>roles</th>
-              <th>password</th>
-              <th>firstName</th>
-              <th>lastName</th>
-              <th>address</th>
+              {/* <th>roles</th> */}
+              {/* <th>Mot de passe</th> */}
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Adresse</th>
               <th>cp</th>
-              <th>city</th>
-              <th>phone</th>
-              <th>createdAt</th>
-              <th>updatedAt</th>
-              <th>reservations</th>
-              <th>shares</th>
-              <th>userIdentifier</th>
+              <th>Ville</th>
+              <th>Portable</th>
+              {/* <th>createdAt</th>
+              <th>updatedAt</th> */}
+              <th>réservations</th>
+              <th>Parts Sociales</th>
+              {/* <th>userIdentifier</th>
               <th>username</th>
-              <th>salt</th>
+              <th>salt</th> */}
               <th colSpan={2} />
             </tr>
           </thead>
+        
           <tbody>
             {this.props.retrieved &&
               this.props.retrieved["hydra:member"].map((item) => (
@@ -90,23 +88,23 @@ class List extends Component {
                     </Link>
                   </th>
                   <td>{item["email"]}</td>
-                  <td>{item["roles"]}</td>
-                  <td>{item["password"]}</td>
+                  {/* <td>{item["roles"]}</td> */}
+                  {/* <td>{item["password"]}</td> */}
                   <td>{item["firstName"]}</td>
                   <td>{item["lastName"]}</td>
                   <td>{item["address"]}</td>
                   <td>{item["cp"]}</td>
                   <td>{item["city"]}</td>
                   <td>{item["phone"]}</td>
-                  <td>{item["createdAt"]}</td>
-                  <td>{item["updatedAt"]}</td>
+                  {/* <td>{item["createdAt"]}</td>
+                  <td>{item["updatedAt"]}</td> */}
                   <td>
                     {this.renderLinks("reservations", item["reservations"])}
                   </td>
                   <td>{this.renderLinks("shares", item["shares"])}</td>
-                  <td>{item["userIdentifier"]}</td>
+                  {/* <td>{item["userIdentifier"]}</td>
                   <td>{item["username"]}</td>
-                  <td>{item["salt"]}</td>
+                  <td>{item["salt"]}</td> */}
                   <td>
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
                       <span className="fa fa-search" aria-hidden="true" />
@@ -123,7 +121,11 @@ class List extends Component {
               ))}
           </tbody>
         </table>
-
+                  <p>
+          <Link to="create" className="btn  btn-outline-info">
+            Nouvel Adhérent
+          </Link>
+        </p>
         {this.pagination()}
       </div>
     );
@@ -141,6 +143,7 @@ class List extends Component {
     } = view;
 
     return (
+        
       <nav aria-label="Page navigation">
         <Link
           to="."

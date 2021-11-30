@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updatePassword, updateUsername,login } from '../actions/loginAction';
+import { updatePassword, updateUsername,login,isAuthenticated } from '../actions/loginAction';
 import Navbar from './Navbar';
 
 
@@ -11,20 +11,22 @@ class LoginPage extends Component {
     render() {
       return (
             <div>
-                <Navbar/>
+            
                 <h1 className="text-center">Connexion à la Cuma de St Laurent</h1>
-                <form onSubmit={(e)=>this.props.login(e,e.currentTarget.username.value,e.currentTarget.password.value)}>
+                <form onSubmit={(e)=>{
+                    e.preventDefault()
+                    this.props.login(e.currentTarget.username.value,e.currentTarget.password.value)}}>
                     <fieldset className="col-md-6  w-50 mx-auto ">
-                        
-                        <div className="form-group" >
-                        <label htmlFor="username" className="form-label mt-4">Mon adresse Email</label>
-                        <input  onChange={(e)=>{this.props.updateUsername(e.target.value)}} value ={this.props.username} type="email" className="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Adresse Email"/>
+                        <div className="input-group margin-bottom-sm" >
+                        <span className="input-group-addon"><i className="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                        <input onChange={(e)=>{this.props.updateUsername(e.target.value)}} value ={this.props.username} type="email" className="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Adresse Email" />
                         </div>
-                        <div className="form-group">
-                        <label  htmlFor="password" className="form-label mt-4">Mot de passe </label>
-                        <input  onChange={(e)=>{this.props.updatePassword(e.target.value)}} value={this.props.password} type="password" className="form-control" id="password" name="password" placeholder="Mot de passe"/>
+                        <div className="input-group">
+     
+                        <span className="input-group-addon"><i className="fa fa-key fa-fw" aria-hidden="true"></i></span>
+                        <input onChange={(e)=>{this.props.updatePassword(e.target.value)}} value={this.props.password} type="password" className="form-control" id="password" name="password" placeholder="Mot de passe"/>
                         </div>
-                        <button type="submit" className="btn btn-primary mt-5" >Je me connecte</button>
+                        <button onClick={(auth)=>this.props.isAuthenticated(auth)}type="submit" className="btn btn-info mt-5" >connexion</button>
                        
                     </fieldset>
                 </form>
@@ -38,7 +40,8 @@ const mapStateToProps = (state)=>{
    
     return{
         username:state.loginReducer.username,
-        password:state.loginReducer.password
+        password:state.loginReducer.password,
+        isAuthenticated:state.loginReducer.isAuthenticated
     }
    
 }
@@ -47,6 +50,7 @@ const mapDispatchToProps = (dispatch) => {
         updateUsername,
         updatePassword,
         login,
+        isAuthenticated,
         },dispatch);
 }
  

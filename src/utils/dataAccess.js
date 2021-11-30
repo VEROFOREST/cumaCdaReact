@@ -5,18 +5,20 @@ import has from "lodash/has";
 import mapValues from "lodash/mapValues";
 
 const MIME_TYPE = "application/ld+json";
-
-export function fetch(id, options = {}) {
-  if ("undefined" === typeof options.headers) options.headers = new Headers();
-  if (null === options.headers.get("Accept"))
+export function fetch(id, options = {},authToken) {
+    if ("undefined" === typeof options.headers) options.headers = new Headers();
+    if (null === options.headers.get("Accept"))
     options.headers.set("Accept", MIME_TYPE);
-
-  if (
-    "undefined" !== options.body &&
-    !(options.body instanceof FormData) &&
-    null === options.headers.get("Content-Type")
-  )
-    options.headers.set("Content-Type", MIME_TYPE);
+    
+    if (
+        "undefined" !== options.body &&
+        !(options.body instanceof FormData) &&
+        null === options.headers.get("Content-Type")
+        )
+        options.headers.set("Content-Type", MIME_TYPE);
+        const token  = window.localStorage.getItem("authToken") 
+        console.log (` ${token}`)
+        options.headers.set ('Authorization', `Bearer ${token}`)
 
   return global.fetch(new URL(id, ENTRYPOINT), options).then((response) => {
     if (response.ok) return response;
