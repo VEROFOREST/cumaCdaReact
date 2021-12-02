@@ -38,7 +38,7 @@ class Show extends Component {
     const item = this.props.retrieved;
 
     return (
-      <div>
+      <div className="container ml-5 mr-10">
         <h1>Show {item && item["@id"]}</h1>
 
         {this.props.loading && (
@@ -73,23 +73,23 @@ class Show extends Component {
                 <td>{item["email"]}</td>
               </tr>
               <tr>
-                <th scope="row">roles</th>
+                <th scope="row">Rôle</th>
                 <td>{item["roles"]}</td>
               </tr>
               <tr>
-                <th scope="row">password</th>
+                <th scope="row">Mot de passe</th>
                 <td>{item["password"]}</td>
               </tr>
               <tr>
-                <th scope="row">firstName</th>
+                <th scope="row">Prénom</th>
                 <td>{item["firstName"]}</td>
               </tr>
               <tr>
-                <th scope="row">lastName</th>
+                <th scope="row">Nom</th>
                 <td>{item["lastName"]}</td>
               </tr>
               <tr>
-                <th scope="row">address</th>
+                <th scope="row">adresse</th>
                 <td>{item["address"]}</td>
               </tr>
               <tr>
@@ -97,32 +97,32 @@ class Show extends Component {
                 <td>{item["cp"]}</td>
               </tr>
               <tr>
-                <th scope="row">city</th>
+                <th scope="row">Ville</th>
                 <td>{item["city"]}</td>
               </tr>
               <tr>
-                <th scope="row">phone</th>
+                <th scope="row">portable</th>
                 <td>{item["phone"]}</td>
               </tr>
               <tr>
-                <th scope="row">createdAt</th>
+                <th scope="row">créé le </th>
                 <td>{item["createdAt"]}</td>
               </tr>
               <tr>
-                <th scope="row">updatedAt</th>
+                <th scope="row">mis à jour le</th>
                 <td>{item["updatedAt"]}</td>
               </tr>
               <tr>
-                <th scope="row">reservations</th>
+                <th scope="row">Réservations</th>
                 <td>
                   {this.renderLinks("reservations", item["reservations"])}
                 </td>
               </tr>
               <tr>
-                <th scope="row">shares</th>
+                <th scope="row">Parts sociales</th>
                 <td>{this.renderLinks("shares", item["shares"])}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <th scope="row">userIdentifier</th>
                 <td>{item["userIdentifier"]}</td>
               </tr>
@@ -133,21 +133,23 @@ class Show extends Component {
               <tr>
                 <th scope="row">salt</th>
                 <td>{item["salt"]}</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         )}
-        <Link to=".." className="btn btn-primary">
-          Back to list
+        <div  className="d-flex justify-content-around"> 
+        <Link to=".." className="btn btn-outline-info"><span className="fa fa-th-list fa-2x text-Light" aria-hidden="true"/>
+            
         </Link>
         {item && (
           <Link to={`/users/edit/${encodeURIComponent(item["@id"])}`}>
-            <button className="btn btn-warning">Edit</button>
+            <button className="btn btn-outline-warning"><span className="fa fa-pencil fa-2x text-Light" aria-hidden="true"/></button>
           </Link>
         )}
-        <button onClick={this.del} className="btn btn-danger">
-          Delete
+        <button onClick={this.del} className="btn btn-outline-danger"><span className="fa fa-trash fa-2x text-Light" aria-hidden="true"/>
+         
         </button>
+        </div>
       </div>
     );
   }

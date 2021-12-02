@@ -28,7 +28,7 @@ class Create extends Component {
 
     return (
       <div className="container ml-10 mr-10">
-        <h1>Nouvel adhérent</h1>
+        <h1 className="text-info" style={{marginTop:50}}>Nouvel adhérent</h1>
 
         {this.props.loading && (
           <div className="alert alert-info" role="status">
@@ -43,9 +43,10 @@ class Create extends Component {
         )}
 
         <Form onSubmit={this.props.create} values={this.props.item} />
-        <Link to="." className="btn btn-primary">
-          Back to list
-        </Link>
+        <div className ="d-flex " style ={{marginTop:-50}}>
+        <Link to="." className="btn btn-outline-info"><span className="fa fa-th-list fa-2x " aria-hidden="true"/> </Link>
+
+        </div>
       </div>
     );
   }

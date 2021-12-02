@@ -58,18 +58,18 @@ class List extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>email</th>
+              <th>Email</th>
               {/* <th>roles</th> */}
               {/* <th>Mot de passe</th> */}
               <th>Nom</th>
               <th>Prénom</th>
               <th>Adresse</th>
-              <th>cp</th>
+              <th>CP</th>
               <th>Ville</th>
               <th>Portable</th>
               {/* <th>createdAt</th>
               <th>updatedAt</th> */}
-              <th>réservations</th>
+              <th>Réservations</th>
               <th>Parts Sociales</th>
               {/* <th>userIdentifier</th>
               <th>username</th>
@@ -107,25 +107,26 @@ class List extends Component {
                   <td>{item["salt"]}</td> */}
                   <td>
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-search" aria-hidden="true" />
-                      <span className="sr-only">Show</span>
+                      <span className="fa fa-search text-info" aria-hidden="true" />
+                      <span className="sr-only">Voir</span>
                     </Link>
                   </td>
                   <td>
                     <Link to={`edit/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-pencil" aria-hidden="true" />
-                      <span className="sr-only">Edit</span>
+                      <span className="fa fa-pencil text-info" aria-hidden="true" />
+                      <span className="sr-only">Modifier</span>
                     </Link>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
-                  <p>
+             
           <Link to="create" className="btn  btn-outline-info">
+             <span className="fa fa-plus-circle fa-2x " aria-hidden="true" />
             Nouvel Adhérent
           </Link>
-        </p>
+      
         {this.pagination()}
       </div>
     );

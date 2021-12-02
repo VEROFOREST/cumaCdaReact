@@ -43,7 +43,7 @@ class Update extends Component {
     const item = this.props.updated ? this.props.updated : this.props.retrieved;
 
     return (
-      <div>
+      <div className="container ml-5 mr-10">
         <h1>Edit {item && item["@id"]}</h1>
 
         {this.props.created && (
@@ -88,12 +88,19 @@ class Update extends Component {
             initialValues={item}
           />
         )}
-        <Link to=".." className="btn btn-primary">
-          Back to list
+        <div className ="d-flex justify-content-around" style ={{marginTop:-50}}>
+
+        <Link to=".." className="btn btn-outline-info">
+            <span className="fa fa-th-list fa-2x text-Light" aria-hidden="true"/>
+        
         </Link>
-        <button onClick={this.del} className="btn btn-danger">
-          Delete
+        
+        <button onClick={this.del} className="btn btn-outline-danger">
+            <span className="fa fa-trash fa-2x text-Light" aria-hidden="true"/>
+        
         </button>
+
+        </div>
       </div>
     );
   }

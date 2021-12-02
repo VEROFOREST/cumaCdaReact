@@ -25,9 +25,9 @@ class Form extends Component {
       <div className={`form-group`}>
         <label
           htmlFor={`user_${data.input.name}`}
-          className="form-control-label"
+          className="form-control-label"  
         >
-          {data.input.name}
+          {/* {data.input.name} */}
         </label>
         <input
           {...data.input}
@@ -44,73 +44,98 @@ class Form extends Component {
 
   render() {
     return (
+    <div className="container mr-10 ml-10" style={{marginTop:50}}>
       <form onSubmit={this.props.handleSubmit}>
+        <div className="d-flex flex-fill justify-content-center">
+        <label for="example-49293">Email</label>
         <Field
           component={this.renderField}
           name="email"
           type="text"
           placeholder=""
         />
+        <label for="example-49293">Rôle</label>
         <Field
           component={this.renderField}
           name="roles"
           type="text"
           placeholder=""
-        />
+          />
+         <label for="example-49293">Mot de passe</label>
         <Field
           component={this.renderField}
           name="password"
           type="text"
-          placeholder="The hashed password"
-        />
+          placeholder="mot de passe"
+          />
+          </div>
+          <div className="d-flex flex-fill justify-content-center">
+         <label for="example-49293">Nom</label>
         <Field
           component={this.renderField}
-          name="Nom"
+          name="lastName"
           type="text"
           placeholder=""
         />
+         <label for="example-49293">Prénom</label>
         <Field
           component={this.renderField}
-          name="Prénom"
+          name="firstName"
           type="text"
           placeholder=""
         />
+        </div>
+         <div className="d-flex flex-fill justify-content-center">
+         <label for="example-49293">Adresse</label>
         <Field
           component={this.renderField}
           name="address"
           type="text"
           placeholder=""
         />
+         <label for="example-49293">CP</label>
+
         <Field
           component={this.renderField}
           name="cp"
           type="text"
           placeholder=""
         />
+         <label for="example-49293">Ville</label>
         <Field
           component={this.renderField}
           name="city"
           type="text"
           placeholder=""
         />
+         <label for="example-49293">Portable</label>
         <Field
           component={this.renderField}
           name="phone"
           type="text"
           placeholder=""
         />
+        </div>
+        <div className="d-flex flex-fill justify-content-center">
+         <label for="example-49293">Créé le</label>
+
         <Field
           component={this.renderField}
           name="createdAt"
           type="dateTime"
           placeholder=""
         />
+         <label for="example-49293">Mis à jour le </label>
+
         <Field
           component={this.renderField}
           name="updatedAt"
           type="dateTime"
           placeholder=""
         />
+        </div>
+        <div className="d-flex flex-fill justify-content-around">
+         <label for="example-49293">Mes réservations</label>
         <Field
           component={this.renderField}
           name="reservations"
@@ -118,6 +143,8 @@ class Form extends Component {
           placeholder=""
           normalize={(v) => (v === "" ? [] : v.split(","))}
         />
+         <label for="example-49293">Mes parts sociales</label>
+
         <Field
           component={this.renderField}
           name="shares"
@@ -125,11 +152,14 @@ class Form extends Component {
           placeholder=""
           normalize={(v) => (v === "" ? [] : v.split(","))}
         />
-
-        <button type="submit" className="btn btn-success">
-          Submit
+        </div>
+        <div className="d-flex justify-content-end" style={{marginTop:50}}>
+        <button type="submit" className="btn  btn-outline-success ">
+            <span className="fa fa-paper-plane fa-2x text-Light" aria-hidden="true"/>
         </button>
+        </div>
       </form>
+  </div>
     );
   }
 }
