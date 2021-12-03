@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import {isAuthenticated,logout,updateFirstName,updateLastName} from './actions/loginAction';
 import {isLogin} from './services/authApi'
 import userRoutes from './routes/user';
+import reservationRoutes from './routes/reservation';
 import LoginPage from './components/LoginPage';
 import {ConnectedRouter} from 'connected-react-router';
 import { Route, Switch} from 'react-router-dom';
@@ -29,7 +30,8 @@ const App = (props) => {
         {/* <ConnectedRouter history={history}> */}
             <Navbar firstName = {props.updateFirstName(firstName)}   lastName = {props.updateLastName(lastName)} auth={props.isAuthenticated(status)} />
             <Switch>
-            {userRoutes}
+            { reservationRoutes }
+            { userRoutes }
             <Route path="/login" component={LoginPage}/>
             <Route exact path="/" component= {HomePage}/>
             <Route  path="/DashboardPage" render={() => <DashboardPage firstName = {props.updateFirstName(firstName)}   lastName = {props.updateLastName(lastName)} />}/>

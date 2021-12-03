@@ -17,6 +17,7 @@ import {
 // import 'font-awesome/css/font-awesome.css';
 // import * as serviceWorker from './serviceWorker';
 import user from './reducers/user/';
+import reservation from './reducers/reservation/';
 import userRoutes from './routes/user';
 import LoginPage from './components/LoginPage';
 import loginReducer from './reducers/loginReducer';
@@ -30,6 +31,7 @@ export const store = createStore(
     form,
     loginReducer,
     user,
+    reservation,
   }),
   applyMiddleware(routerMiddleware(history), thunk)
 );

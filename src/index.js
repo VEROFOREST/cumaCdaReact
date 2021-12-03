@@ -22,7 +22,7 @@ import LoginPage from './components/LoginPage';
 import loginReducer from './reducers/loginReducer';
 import Navbar from './components/Navbar';
 import { store } from './store';
-
+import reservation from './reducers/reservation/';
 
 
 // import Navbar from './components/Navbar';
