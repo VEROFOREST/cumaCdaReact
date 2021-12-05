@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import Form from "./Form";
-import { create, reset } from "../../actions/reservation/create";
+import { create, reset } from "../../actions/equipment/create";
 
 class Create extends Component {
   static propTypes = {
@@ -28,7 +28,7 @@ class Create extends Component {
 
     return (
       <div>
-        <h1>Nouvelle réservation</h1>
+        <h1>New Equipment</h1>
 
         {this.props.loading && (
           <div className="alert alert-info" role="status">
@@ -43,7 +43,7 @@ class Create extends Component {
         )}
 
         <Form onSubmit={this.props.create} values={this.props.item} />
-        <Link to="." className="btn btn-info">
+        <Link to="." className="btn btn-primary">
           Back to list
         </Link>
       </div>
@@ -52,7 +52,7 @@ class Create extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { created, error, loading } = state.reservation.create;
+  const { created, error, loading } = state.equipment.create;
   return { created, error, loading };
 };
 

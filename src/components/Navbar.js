@@ -15,7 +15,7 @@ const Navbar = (props) => {
         <nav className="navbar navbar-expand-lg navbar-light bg-info" >
   <div className="container-fluid">
      
-    <a className="navbar-brand" href="HomePage">Cuma de St Laurent</a>
+    <NavLink className="navbar-brand" to="/">Cuma de St Laurent</NavLink>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -23,7 +23,7 @@ const Navbar = (props) => {
     <div className="collapse navbar-collapse" id="navbarColor02">
       <ul className="navbar-nav me-auto">
         <li className="nav-item">
-          <NavLink className="nav-link active" exact to="/">Accueil
+          <NavLink className="nav-link active" exact to="/DashboardPage"><i class="fa fa-home" aria-hidden="true"></i>
             <span className="visually-hidden">(current)</span>
           </NavLink>
         </li>
@@ -31,7 +31,7 @@ const Navbar = (props) => {
           <NavLink className="nav-link" to="/Users/">Adhérents</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/Equipments/">Matériels</NavLink>
+          <NavLink className="nav-link" to="/Equipment/">Matériels</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/Reservations/">Réservations</NavLink>

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import Form from "./Form";
-import { retrieve, update, reset } from "../../actions/reservation/update";
-import { del } from "../../actions/reservation/delete";
+import { retrieve, update, reset } from "../../actions/equipment/update";
+import { del } from "../../actions/equipment/delete";
 
 class Update extends Component {
   static propTypes = {
@@ -44,8 +44,8 @@ class Update extends Component {
 
     return (
       <div>
-        <h1>Modifier {item && item["@id"]}</h1>
-        {/* console.log({item && item["@id"]}) */}
+        <h1>Edit {item && item["@id"]}</h1>
+
         {this.props.created && (
           <div className="alert alert-success" role="status">
             {this.props.created["@id"]} created.
@@ -100,17 +100,17 @@ class Update extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  retrieved: state.reservation.update.retrieved,
-  retrieveError: state.reservation.update.retrieveError,
-  retrieveLoading: state.reservation.update.retrieveLoading,
-  updateError: state.reservation.update.updateError,
-  updateLoading: state.reservation.update.updateLoading,
-  deleteError: state.reservation.del.error,
-  deleteLoading: state.reservation.del.loading,
-  eventSource: state.reservation.update.eventSource,
-  created: state.reservation.create.created,
-  deleted: state.reservation.del.deleted,
-  updated: state.reservation.update.updated,
+  retrieved: state.equipment.update.retrieved,
+  retrieveError: state.equipment.update.retrieveError,
+  retrieveLoading: state.equipment.update.retrieveLoading,
+  updateError: state.equipment.update.updateError,
+  updateLoading: state.equipment.update.updateLoading,
+  deleteError: state.equipment.del.error,
+  deleteLoading: state.equipment.del.loading,
+  eventSource: state.equipment.update.eventSource,
+  created: state.equipment.create.created,
+  deleted: state.equipment.del.deleted,
+  updated: state.equipment.update.updated,
 });
 
 const mapDispatchToProps = (dispatch) => ({

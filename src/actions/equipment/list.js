@@ -7,18 +7,18 @@ import {
 import { success as deleteSuccess } from "./delete";
 
 export function error(error) {
-  return { type: "USER_LIST_ERROR", error };
+  return { type: "EQUIPMENT_LIST_ERROR", error };
 }
 
 export function loading(loading) {
-  return { type: "USER_LIST_LOADING", loading };
+  return { type: "EQUIPMENT_LIST_LOADING", loading };
 }
 
 export function success(retrieved) {
-  return { type: "USER_LIST_SUCCESS", retrieved };
+  return { type: "EQUIPMENT_LIST_SUCCESS", retrieved };
 }
 
-export function list(page = "users") {
+export function list(page = "equipment") {
   return (dispatch) => {
     dispatch(loading(true));
     dispatch(error(""));
@@ -28,22 +28,20 @@ export function list(page = "users") {
         response
           .json()
           .then((retrieved) => ({ retrieved, hubURL: extractHubURL(response) }))
-          
-          
       )
       .then(({ retrieved, hubURL }) => {
         retrieved = normalize(retrieved);
 
         dispatch(loading(false));
         dispatch(success(retrieved));
+
         if (hubURL && retrieved["hydra:member"].length)
           dispatch(
             mercureSubscribe(
               hubURL,
               retrieved["hydra:member"].map((i) => i["@id"])
-              )
-              );
-              
+            )
+          );
       })
       .catch((e) => {
         dispatch(loading(false));
@@ -56,7 +54,7 @@ export function reset(eventSource) {
   return (dispatch) => {
     if (eventSource) eventSource.close();
 
-    dispatch({ type: "USER_LIST_RESET" });
+    dispatch({ type: "EQUIPMENT_LIST_RESET" });
     dispatch(deleteSuccess(null));
   };
 }
@@ -72,17 +70,16 @@ export function mercureSubscribe(hubURL, topics) {
 }
 
 export function mercureOpen(eventSource) {
-  return { type: "USER_LIST_MERCURE_OPEN", eventSource };
+  return { type: "EQUIPMENT_LIST_MERCURE_OPEN", eventSource };
 }
 
 export function mercureMessage(retrieved) {
   return (dispatch) => {
     if (1 === Object.keys(retrieved).length) {
-      dispatch({ type: "USER_LIST_MERCURE_DELETED", retrieved });
-      
+      dispatch({ type: "EQUIPMENT_LIST_MERCURE_DELETED", retrieved });
       return;
     }
 
-    dispatch({ type: "USER_LIST_MERCURE_MESSAGE", retrieved });
+    dispatch({ type: "EQUIPMENT_LIST_MERCURE_MESSAGE", retrieved });
   };
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { list, reset } from "../../actions/reservation/list";
+import { list, reset } from "../../actions/equipment/list";
 
 class List extends Component {
   static propTypes = {
@@ -24,7 +24,6 @@ class List extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.page !== prevProps.match.params.page)
-    
       this.props.list(
         this.props.match.params.page &&
           decodeURIComponent(this.props.match.params.page)
@@ -37,8 +36,8 @@ class List extends Component {
 
   render() {
     return (
-      <div className="container ml-5 mr-10">
-        <h1>Les réservations</h1>
+      <div>
+        <h1>Equipment List</h1>
 
         {this.props.loading && (
           <div className="alert alert-info">Loading...</div>
@@ -53,9 +52,8 @@ class List extends Component {
         )}
 
         <p>
-          <Link to="create" className="btn btn-outline-info ">
-            <i className="fa fa-plus-circle fa-2x " aria-hidden="true"></i>
-           {/* Nouvelle réservation */}
+          <Link to="create" className="btn btn-primary">
+            Create
           </Link>
         </p>
 
@@ -63,19 +61,20 @@ class List extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>Matériel</th>
-              <th>Adhérent</th>
-              <th>date de début de réservation</th>
-              <th>date de fin de réservation</th>
-              <th>Réservation validée</th>
-              <th>Matériel disponible</th>
-              <th>Créé le</th>
-              {/* <th>updatedAt</th> */}
+              <th>name</th>
+              <th>picture</th>
+              <th>equipmentYear</th>
+              <th>purchaseYear</th>
+              <th>price</th>
+              <th>createdAt</th>
+              <th>updatedAt</th>
+              <th>reservations</th>
+              <th>shares</th>
+              <th>rentalType</th>
               <th colSpan={2} />
             </tr>
           </thead>
           <tbody>
-              
             {this.props.retrieved &&
               this.props.retrieved["hydra:member"].map((item) => (
                 <tr key={item["@id"]}>
@@ -84,27 +83,30 @@ class List extends Component {
                       {item["@id"]}
                     </Link>
                   </th>
-                  <td className="text-info">{this.renderLinks("equipment", item["equipment"])}</td>
-                  <td>{this.renderLinks("users", item["user"])}</td>
-                  <td>{item["startDate"]}</td>
-                  <td>{item["endDate"]}</td>
-                  {item["isValidated"] === false ? <td><i className="fa fa-check text-warning" aria-hidden="true"></i></td> :
-                  <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>} 
-                 {item["isAvailable"] === false ? <td><i class="fa fa-times text-danger" aria-hidden="true"></i></td> :
-                  <td><i class="fa fa-check-circle text-success" aria-hidden="true"></i></td>} 
-                  {/* <td>{item["isAvailable"]}</td> */}
+                  <td>{item["name"]}</td>
+                  <td>{item["picture"]}</td>
+                  <td>{item["equipmentYear"]}</td>
+                  <td>{item["purchaseYear"]}</td>
+                  <td>{item["price"]}</td>
                   <td>{item["createdAt"]}</td>
-                  {/* <td>{item["updatedAt"]}</td> */}
+                  <td>{item["updatedAt"]}</td>
+                  <td>
+                    {this.renderLinks("reservations", item["reservations"])}
+                  </td>
+                  <td>{this.renderLinks("shares", item["shares"])}</td>
+                  <td>
+                    {this.renderLinks("rental_types", item["rentalType"])}
+                  </td>
                   <td>
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-search text-info" aria-hidden="true" />
-                      <span className="sr-only">Voir</span>
+                      <span className="fa fa-search" aria-hidden="true" />
+                      <span className="sr-only">Show</span>
                     </Link>
                   </td>
                   <td>
                     <Link to={`edit/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-pencil text-info" aria-hidden="true" />
-                      <span className="sr-only">Modifier</span>
+                      <span className="fa fa-pencil" aria-hidden="true" />
+                      <span className="sr-only">Edit</span>
                     </Link>
                   </td>
                 </tr>
@@ -168,14 +170,14 @@ class List extends Component {
     }
 
     return (
-      <Link to={`../${type}/show/${encodeURIComponent(items)}`}>${items}</Link>
+      <Link to={`../${type}/show/${encodeURIComponent(items)}`}>{items}</Link>
     );
   };
 }
 
 const mapStateToProps = (state) => {
   const { retrieved, loading, error, eventSource, deletedItem } =
-    state.reservation.list;
+    state.equipment.list;
   return { retrieved, loading, error, eventSource, deletedItem };
 };
 

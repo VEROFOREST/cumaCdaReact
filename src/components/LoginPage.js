@@ -13,8 +13,8 @@ class LoginPage extends Component {
       return (
             <div className="d-flex-column align-content-around">
             
-                <h1 className="text-center">Connexion à la Cuma de St Laurent</h1>
-                <form onSubmit={(e)=>{
+                <h1 className="text-center ">Connexion à la Cuma de St Laurent</h1>
+                <form className="container ml-5 mr-10" onSubmit={(e)=>{
                     e.preventDefault()
                     this.props.login(e.currentTarget.username.value,e.currentTarget.password.value)}}>
                     <fieldset className="col-md-6  w-50 mx-auto ">

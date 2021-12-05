@@ -41,11 +41,11 @@ class List extends Component {
         <h1>Liste des Adhérents</h1>
 
         {this.props.loading && (
-          <div className="alert alert-info">Loading...</div>
+          <div className="alert alert-info">Chargement...</div>
         )}
         {this.props.deletedItem && (
           <div className="alert alert-success">
-            {this.props.deletedItem["@id"]} deleted.
+            {this.props.deletedItem["@id"]} supprimé.
           </div>
         )}
         {this.props.error && (
@@ -54,6 +54,10 @@ class List extends Component {
 
         
 
+        <Link to="create" className="btn  btn-outline-info">
+            <i className="fa fa-plus-circle fa-2x " aria-hidden="true" />
+      
+        </Link>
         <table className="table table-responsive table-striped table-hover">
           <thead>
             <tr>
@@ -122,10 +126,6 @@ class List extends Component {
           </tbody>
         </table>
              
-          <Link to="create" className="btn  btn-outline-info">
-             <span className="fa fa-plus-circle fa-2x " aria-hidden="true" />
-            Nouvel Adhérent
-          </Link>
       
         {this.pagination()}
       </div>

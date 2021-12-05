@@ -9,6 +9,7 @@ import {isAuthenticated,logout,updateFirstName,updateLastName} from './actions/l
 import {isLogin} from './services/authApi'
 import userRoutes from './routes/user';
 import reservationRoutes from './routes/reservation';
+import equipmentRoutes from './routes/equipment';
 import LoginPage from './components/LoginPage';
 import {ConnectedRouter} from 'connected-react-router';
 import { Route, Switch} from 'react-router-dom';
@@ -30,6 +31,7 @@ const App = (props) => {
         {/* <ConnectedRouter history={history}> */}
             <Navbar firstName = {props.updateFirstName(firstName)}   lastName = {props.updateLastName(lastName)} auth={props.isAuthenticated(status)} />
             <Switch>
+            { equipmentRoutes }   
             { reservationRoutes }
             { userRoutes }
             <Route path="/login" component={LoginPage}/>
