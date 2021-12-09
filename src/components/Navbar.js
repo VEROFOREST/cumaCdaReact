@@ -36,7 +36,12 @@ const Navbar = (props) => {
         <li className="nav-item">
           <NavLink className="nav-link" to="/Reservations/">Réservations</NavLink>
         </li>
-   
+         <li className="nav-item">
+          <NavLink className="nav-link" to="/Shares/">Parts sociales</NavLink>
+        </li>
+         <li className="nav-item">
+          <NavLink className="nav-link" to="/Rental_types/">Types de location</NavLink>
+        </li>
       </ul>
       <ul className="navbar-nav ml-auto">
       

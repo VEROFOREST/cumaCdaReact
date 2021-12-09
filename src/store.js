@@ -19,6 +19,8 @@ import {
 import user from './reducers/user/';
 import reservation from './reducers/reservation/';
 import equipment from './reducers/equipment/';
+import share from './reducers/share/'
+import rentaltype from './reducers/rentaltype/'
 import userRoutes from './routes/user';
 import LoginPage from './components/LoginPage';
 import loginReducer from './reducers/loginReducer';
@@ -34,6 +36,8 @@ export const store = createStore(
     user,
     reservation,
     equipment,
+    share,
+    rentaltype
   }),
   applyMiddleware(routerMiddleware(history), thunk)
 );
