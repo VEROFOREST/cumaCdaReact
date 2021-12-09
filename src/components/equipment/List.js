@@ -61,16 +61,16 @@ class List extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>name</th>
-              <th>picture</th>
-              <th>equipmentYear</th>
-              <th>purchaseYear</th>
-              <th>price</th>
-              <th>createdAt</th>
-              <th>updatedAt</th>
-              <th>reservations</th>
-              <th>shares</th>
-              <th>rentalType</th>
+              <th>nom</th>
+              {/* <th>Image</th> */}
+              <th>Année du matériel</th>
+              <th>Année d'achat</th>
+              <th>Prix</th>
+              <th>Créé le</th>
+              <th>Mis à jour le</th>
+              <th>Réservations</th>
+              <th>Parts sociales</th>
+              <th>Type de location</th>
               <th colSpan={2} />
             </tr>
           </thead>
@@ -80,17 +80,18 @@ class List extends Component {
                 <tr key={item["@id"]}>
                   <th scope="row">
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
-                      {item["@id"]}
+                      {item["id"]}
                     </Link>
                   </th>
                   <td>{item["name"]}</td>
-                  <td>{item["picture"]}</td>
+                  {/* <td>{item["picture"]}</td> */}
                   <td>{item["equipmentYear"]}</td>
                   <td>{item["purchaseYear"]}</td>
                   <td>{item["price"]}</td>
                   <td>{item["createdAt"]}</td>
                   <td>{item["updatedAt"]}</td>
                   <td>
+                      
                     {this.renderLinks("reservations", item["reservations"])}
                   </td>
                   <td>{this.renderLinks("shares", item["shares"])}</td>

@@ -81,7 +81,7 @@ class List extends Component {
                 <tr key={item["@id"]}>
                   <th scope="row">
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
-                      {item["@id"]}
+                      {item["id"]}
                     </Link>
                   </th>
                   <td className="text-info">{this.renderLinks("equipment", item["equipment"])}</td>
@@ -166,7 +166,7 @@ class List extends Component {
         <div key={i}>{this.renderLinks(type, item)}</div>
       ));
     }
-
+    
     return (
       <Link to={`../${type}/show/${encodeURIComponent(items)}`}>${items}</Link>
     );
@@ -174,6 +174,7 @@ class List extends Component {
 }
 
 const mapStateToProps = (state) => {
+   
   const { retrieved, loading, error, eventSource, deletedItem } =
     state.reservation.list;
   return { retrieved, loading, error, eventSource, deletedItem };

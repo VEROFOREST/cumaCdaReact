@@ -46,7 +46,7 @@ class Form extends Component {
     return (
     <div className="container mr-10 ml-10" style={{marginTop:50}}>
       <form onSubmit={this.props.handleSubmit}>
-        <div className="d-flex flex-fill justify-content-center">
+        <div className="d-flex flex-column p-2">
         <label for="example-49293">Email</label>
         <Field
           component={this.renderField}
@@ -68,8 +68,7 @@ class Form extends Component {
           type="text"
           placeholder="mot de passe"
           />
-          </div>
-          <div className="d-flex flex-fill justify-content-center">
+          
          <label for="example-49293">Nom</label>
         <Field
           component={this.renderField}
@@ -84,8 +83,7 @@ class Form extends Component {
           type="text"
           placeholder=""
         />
-        </div>
-         <div className="d-flex flex-fill justify-content-center">
+       
          <label for="example-49293">Adresse</label>
         <Field
           component={this.renderField}
@@ -115,8 +113,7 @@ class Form extends Component {
           type="text"
           placeholder=""
         />
-        </div>
-        <div className="d-flex flex-fill justify-content-center">
+        
          <label for="example-49293">Créé le</label>
 
         <Field
@@ -133,8 +130,7 @@ class Form extends Component {
           type="dateTime"
           placeholder=""
         />
-        </div>
-        <div className="d-flex flex-fill justify-content-around">
+       
          <label for="example-49293">Mes réservations</label>
         <Field
           component={this.renderField}

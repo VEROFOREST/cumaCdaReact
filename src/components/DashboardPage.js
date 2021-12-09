@@ -40,11 +40,11 @@ const DashboardPage = (props) => {
                         <img src={tracteur} alt="" />
                         <div className="card-body">
                             {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                            <Link to="users/create" style={{textDecoration:"none"}} >
+                            <Link to="equipment/create" style={{textDecoration:"none"}} >
                             <p className="list-group-item text-info" style={{display:"flex",justifyContent:"space-around"}} >Ajouter un matériel
                             <span className="fa fa-plus-circle fa-2x text-info" aria-hidden="true" /></p>
                             </Link>
-                            <Link to="/users/"  style={{textDecoration:"none"}}>
+                            <Link to="/equipment/"  style={{textDecoration:"none"}}>
                             <p className="list-group-item text-info" style={{display:"flex",justifyContent:"space-around"}}>Liste des matériels
                             <span className="fa fa-th-list fa-2x text-info" aria-hidden="true"/>
                             </p>

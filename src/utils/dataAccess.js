@@ -17,7 +17,7 @@ export function fetch(id, options = {},authToken) {
         )
         options.headers.set("Content-Type", MIME_TYPE);
         const token  = window.localStorage.getItem("authToken") 
-        console.log (` ${token}`)
+        
         options.headers.set ('Authorization', `Bearer ${token}`)
 
   return global.fetch(new URL(id, ENTRYPOINT), options).then((response) => {
@@ -57,10 +57,11 @@ export function mercureSubscribe(url, topics) {
 }
 
 export function normalize(data) {
+
   if (has(data, "hydra:member")) {
     // Normalize items in collections
     data["hydra:member"] = data["hydra:member"].map((item) => normalize(item));
-            
+    console.log(data["hydra:member"])       
     return data;
   }
 

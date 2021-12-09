@@ -39,7 +39,7 @@ class Show extends Component {
 
     return (
       <div className="container ml-5 mr-10">
-        <h1>Show {item && item["@id"]}</h1>
+        <h1> {item && item["@id"] && item["firstName"] && item["lastName"]}</h1>
 
         {this.props.loading && (
           <div className="alert alert-info" role="status">
