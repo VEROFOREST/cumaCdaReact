@@ -79,19 +79,19 @@ class List extends Component {
                     </Link>
                   </th>
                   <td>{item["type"]}</td>
-                  <td>{item["rentalRate"]}</td>
+                  <td>{item["rentalRate"]} €</td>
                   <td>{item["createdAt"]}</td>
                   <td>{item["updatedAt"]}</td>
                   <td>{this.renderLinks("equipment", item["equipment"])}</td>
                   <td>
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-search" aria-hidden="true" />
+                      <span className="fa fa-search text-info" aria-hidden="true" />
                       <span className="sr-only">Show</span>
                     </Link>
                   </td>
                   <td>
                     <Link to={`edit/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-pencil" aria-hidden="true" />
+                      <span className="fa fa-pencil text-info" aria-hidden="true" />
                       <span className="sr-only">Edit</span>
                     </Link>
                   </td>

@@ -61,7 +61,7 @@ export function normalize(data) {
   if (has(data, "hydra:member")) {
     // Normalize items in collections
     data["hydra:member"] = data["hydra:member"].map((item) => normalize(item));
-    console.log(data["hydra:member"])       
+    // console.log(data["hydra:member"])       
     return data;
   }
 

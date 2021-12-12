@@ -109,23 +109,8 @@ class List extends Component {
                   <td>
                   {item["reservations"].map(reservation => <td key={reservation["@id"]}>{this.renderLinks("reservations", reservation["@id"])}</td>)}
                   </td>
-                  {/* <td>
-                    {this.renderLinks("reservations", item["reservations"])}
-                  </td>  */}
                   
-                   {/* {item["reservations"].map(reservation => <td key={reservation["@id"]}>{reservation.startDate}</td>)}
-                 
-                  
-                  {item["reservations"].map(reservation => <td key={reservation["@id"]}>{reservation.endDate}</td>)}
-                  
-                  {item["reservations"].map(reservation => <td key={reservation["@id"]}>{reservation.isValidated}</td>)}
-                  
-                  {item["reservations"].map(reservation => <td key={reservation["@id"]}>{reservation.isAvailable}</td>)}
-                  */}
-                  <td>
-                  {item["shares"].map(share => <td  key={share["@id"]}>{this.renderLinks("shares", share["@id"])}</td>)}
-                  </td>
-                  {/* <td>{this.renderLinks("shares", item["shares"])}</td> */}
+                  <td>{this.renderLinks("shares", item["shares"])}</td>
                   {/* <td>{item["userIdentifier"]}</td>
                   <td>{item["username"]}</td>
                   <td>{item["salt"]}</td> */}

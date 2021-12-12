@@ -30,18 +30,18 @@ export function list(page = "equipment") {
           .then((retrieved) => ({ retrieved, hubURL: extractHubURL(response) }))
       )
       .then(({ retrieved, hubURL }) => {
-        retrieved = normalize(retrieved);
-
+        // retrieved = normalize(retrieved);
         dispatch(loading(false));
         dispatch(success(retrieved));
-
+        
         if (hubURL && retrieved["hydra:member"].length)
-          dispatch(
+        dispatch(
             mercureSubscribe(
-              hubURL,
-              retrieved["hydra:member"].map((i) => i["@id"])
-            )
-          );
+                hubURL,
+                retrieved["hydra:member"].map((i) => i["@id"])
+                )
+                );
+                console.log(retrieved["hyra:member"]); 
       })
       .catch((e) => {
         dispatch(loading(false));

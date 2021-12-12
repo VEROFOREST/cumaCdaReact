@@ -37,7 +37,7 @@ class List extends Component {
   render() {
     return (
       <div>
-        <h1>Equipment List</h1>
+        <h1>Matériels</h1>
 
         {this.props.loading && (
           <div className="alert alert-info">Loading...</div>
@@ -52,12 +52,13 @@ class List extends Component {
         )}
 
         <p>
-          <Link to="create" className="btn btn-primary">
-            Create
-          </Link>
+          <Link to="create" className="btn  btn-outline-info">
+            <i className="fa fa-plus-circle fa-2x " aria-hidden="true" />
+      
+        </Link>
         </p>
-
-        <table className="table table-responsive table-striped table-hover">
+        
+        <table className="container ml-5 mr-10 table table-responsive table-striped table-hover">
           <thead>
             <tr>
               <th>id</th>
@@ -66,11 +67,14 @@ class List extends Component {
               <th>Année du matériel</th>
               <th>Année d'achat</th>
               <th>Prix</th>
-              <th>Créé le</th>
-              <th>Mis à jour le</th>
+              {/* <th>Créé le</th>
+              <th>Mis à jour le</th> */}
               <th>Réservations</th>
+              <th>Nombre totale de parts sociales</th>
               <th>Parts sociales</th>
-              <th>Type de location</th>
+               <th>Mode de location</th>
+                <th>Tarif</th>
+              {/* <th>Type de location</th> */}
               <th colSpan={2} />
             </tr>
           </thead>
@@ -83,33 +87,34 @@ class List extends Component {
                       {item["id"]}
                     </Link>
                   </th>
-                  <td>{item["name"]}</td>
-                  {/* <td>{item["picture"]}</td> */}
-                  <td>{item["equipmentYear"]}</td>
-                  <td>{item["purchaseYear"]}</td>
-                  <td>{item["price"]}</td>
-                  <td>{item["createdAt"]}</td>
-                  <td>{item["updatedAt"]}</td>
-                  <td>
-                      
-                    {this.renderLinks("reservations", item["reservations"])}
-                  </td>
-                  <td>{this.renderLinks("shares", item["shares"])}</td>
-                  <td>
-                    {this.renderLinks("rental_types", item["rentalType"])}
-                  </td>
-                  <td>
+                    <td>{item["name"]}</td>
+                    {/* <td>{item["picture"]}</td> */}
+                    <td>{item["equipmentYear"]}</td>
+                    <td>{item["purchaseYear"]}</td>
+                    <td>{item["price"]}</td>
+                    <td>
+                        {this.renderLinks("reservations", item["reservations"])}
+                    </td>
+
+                    <td>{item["totalShares"]}</td>
+                    <td>
+                        {this.renderLinks("shares", item["shares"])}
+                    </td>
+                  
+                    <td>{item["rentalType"].type}</td>
+                    <td>{item["rentalType"].rentalRate}</td>
+                    <td>
                     <Link to={`show/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-search" aria-hidden="true" />
-                      <span className="sr-only">Show</span>
+                        <span className="fa fa-search text-info" aria-hidden="true" />
+                        <span className="sr-only">Show</span>
                     </Link>
-                  </td>
-                  <td>
+                    </td>
+                    <td>
                     <Link to={`edit/${encodeURIComponent(item["@id"])}`}>
-                      <span className="fa fa-pencil" aria-hidden="true" />
-                      <span className="sr-only">Edit</span>
+                        <span className="fa fa-pencil text-info" aria-hidden="true" />
+                        <span className="sr-only">Edit</span>
                     </Link>
-                  </td>
+                    </td>
                 </tr>
               ))}
           </tbody>
