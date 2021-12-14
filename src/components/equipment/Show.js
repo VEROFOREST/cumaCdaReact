@@ -60,70 +60,74 @@ class Show extends Component {
         )}
 
         {item && (
-          <table className="table table-responsive table-striped table-hover">
+          <table className="container ml-5 mr-10 table table-responsive table-striped table-hover">
             <thead>
               <tr>
-                <th>Field</th>
-                <th>Value</th>
+                <th>Propriété </th>
+                <th>Valeur</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">name</th>
+                <th scope="row">Nom</th>
                 <td>{item["name"]}</td>
               </tr>
               <tr>
-                <th scope="row">picture</th>
+                <th scope="row">Image</th>
                 <td>{item["picture"]}</td>
               </tr>
               <tr>
-                <th scope="row">equipmentYear</th>
+                <th scope="row">Année du matériel</th>
                 <td>{item["equipmentYear"]}</td>
               </tr>
               <tr>
-                <th scope="row">purchaseYear</th>
+                <th scope="row">Année d'achat</th>
                 <td>{item["purchaseYear"]}</td>
               </tr>
               <tr>
-                <th scope="row">price</th>
+                <th scope="row">Prix</th>
                 <td>{item["price"]}</td>
               </tr>
               <tr>
-                <th scope="row">createdAt</th>
+                <th scope="row">Créé le</th>
                 <td>{item["createdAt"]}</td>
               </tr>
               <tr>
-                <th scope="row">updatedAt</th>
+                <th scope="row">Mis à jour le </th>
                 <td>{item["updatedAt"]}</td>
               </tr>
               <tr>
-                <th scope="row">reservations</th>
+                <th scope="row">Réservations</th>
                 <td>
                   {this.renderLinks("reservations", item["reservations"])}
                 </td>
               </tr>
               <tr>
-                <th scope="row">shares</th>
+                <th scope="row">Parts sociales</th>
                 <td>{this.renderLinks("shares", item["shares"])}</td>
               </tr>
               <tr>
-                <th scope="row">rentalType</th>
+                <th scope="row">Type de location</th>
+                {/* <td>{item["rentalType"].type}</td> */}
+                    {/* <td>{item["rentalType"].rentalRate}</td> */}
                 <td>{this.renderLinks("rental_types", item["rentalType"])}</td>
               </tr>
             </tbody>
           </table>
         )}
-        <Link to=".." className="btn btn-primary">
-          Back to list
+       <div  className="d-flex justify-content-around"> 
+        <Link to=".." className="btn btn-outline-info"><span className="fa fa-th-list fa-2x text-Light" aria-hidden="true"/>
+            
         </Link>
         {item && (
           <Link to={`/equipment/edit/${encodeURIComponent(item["@id"])}`}>
-            <button className="btn btn-warning">Edit</button>
+            <button className="btn btn-outline-warning"><span className="fa fa-pencil fa-2x text-Light" aria-hidden="true"/></button>
           </Link>
         )}
-        <button onClick={this.del} className="btn btn-danger">
-          Delete
+        <button onClick={this.del} className="btn btn-outline-danger">
+         <span className="fa fa-trash fa-2x text-Light" aria-hidden="true"/>
         </button>
+        </div>
       </div>
     );
   }

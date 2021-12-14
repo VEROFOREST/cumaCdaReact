@@ -13,9 +13,8 @@ import equipmentRoutes from './routes/equipment';
 import shareRoutes from './routes/share';
 import rentaltypeRoutes from './routes/rentaltype';
 import LoginPage from './components/LoginPage';
-import {ConnectedRouter} from 'connected-react-router';
 import { Route, Switch} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+
 
 authApi.setup();
 const status = isLogin()

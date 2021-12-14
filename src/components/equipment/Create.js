@@ -19,6 +19,7 @@ class Create extends Component {
   }
 
   render() {
+       
     if (this.props.created)
       return (
         <Redirect
@@ -27,8 +28,8 @@ class Create extends Component {
       );
 
     return (
-      <div>
-        <h1>New Equipment</h1>
+      <div className="container ml-10 mr-10">
+        <h1>Nouveau matériel</h1>
 
         {this.props.loading && (
           <div className="alert alert-info" role="status">
@@ -43,9 +44,10 @@ class Create extends Component {
         )}
 
         <Form onSubmit={this.props.create} values={this.props.item} />
-        <Link to="." className="btn btn-primary">
-          Back to list
-        </Link>
+       <div className ="d-flex " style ={{marginTop:-50}}>
+        <Link to="." className="btn btn-outline-info"><span className="fa fa-th-list fa-2x " aria-hidden="true"/> </Link>
+
+        </div>
       </div>
     );
   }
