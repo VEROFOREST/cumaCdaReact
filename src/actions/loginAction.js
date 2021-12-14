@@ -42,7 +42,7 @@ export const login = (email,password) =>{
     {
         try{
             const token = await axios
-            .post("http://127.0.0.1:8000/api/login_check",{email:email,password:password})
+            .post("http://api.cda2-devops-veronique.simplon-roanne.com/api/login_check",{email:email,password:password})
             .then(response=>response.data.token)
             // stockage du token dans le storage du pc
             window.localStorage.setItem("authToken",token);
